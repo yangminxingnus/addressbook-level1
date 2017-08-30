@@ -129,6 +129,11 @@ public class AddressBook {
     private static final String COMMAND_HELP_DESC = "Shows program usage instructions.";
     private static final String COMMAND_HELP_EXAMPLE = COMMAND_HELP_WORD;
 
+    private static final String COMMAND_LAST_WORD = "last"
+    private static final String COMMAND_LAST_DESC = "Shows last person inserted"
+    private static final String COMMAND_LAST_EXAMPLE = COMMAND_LAST_WORD;
+
+
     private static final String COMMAND_EXIT_WORD = "exit";
     private static final String COMMAND_EXIT_DESC = "Exits the program.";
     private static final String COMMAND_EXIT_EXAMPLE = COMMAND_EXIT_WORD;
@@ -381,6 +386,8 @@ public class AddressBook {
             return executeClearAddressBook();
         case COMMAND_HELP_WORD:
             return getUsageInfoForAllCommands();
+        case COMMAND_LAST_WORD:
+            return executeLast();
         case COMMAND_EXIT_WORD:
             executeExitProgramRequest();
         default:
