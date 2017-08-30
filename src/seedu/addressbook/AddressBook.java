@@ -70,6 +70,8 @@ public class AddressBook {
     private static final String MESSAGE_COMMAND_HELP = "%1$s: %2$s";
     private static final String MESSAGE_COMMAND_HELP_PARAMETERS = "\tParameters: %1$s";
     private static final String MESSAGE_COMMAND_HELP_EXAMPLE = "\tExample: %1$s";
+    private static final String MESSAGE_COMMAND_LAST = "%1$s";
+    private static final String MESSAGE_COMMAND_LAST_EXAMPLE = "\tExample: %1$s";
     private static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
     private static final String MESSAGE_DISPLAY_PERSON_DATA = "%1$s  Phone Number: %2$s  Email: %3$s";
     private static final String MESSAGE_DISPLAY_LIST_ELEMENT_INDEX = "%1$d. ";
@@ -129,8 +131,8 @@ public class AddressBook {
     private static final String COMMAND_HELP_DESC = "Shows program usage instructions.";
     private static final String COMMAND_HELP_EXAMPLE = COMMAND_HELP_WORD;
 
-    private static final String COMMAND_LAST_WORD = "last"
-    private static final String COMMAND_LAST_DESC = "Shows last person inserted"
+    private static final String COMMAND_LAST_WORD = "last";
+    private static final String COMMAND_LAST_DESC = "Shows last person inserted";
     private static final String COMMAND_LAST_EXAMPLE = COMMAND_LAST_WORD;
 
 
@@ -585,6 +587,18 @@ public class AddressBook {
         showToUser(toBeDisplayed);
         return getMessageForPersonsDisplayedSummary(toBeDisplayed);
     }
+
+    /**
+     * Displays the person inserted in the address book to the user.
+     *
+     * @return feedback display message for the operation result.
+     */
+    private static String executeLast() {
+        String[] theLastPerson = getAllPersonsInAddressBook().get(getAllPersonsInAddressBook().size() - 1);
+        showToUser(theLastPerson);
+        return getMessageForFormattedPersonData(theLastPerson);
+    }
+
 
     /**
      * Requests to terminate the program.
@@ -1095,6 +1109,7 @@ public class AddressBook {
                 + getUsageInfoForDeleteCommand() + LS
                 + getUsageInfoForClearCommand() + LS
                 + getUsageInfoForExitCommand() + LS
+                + getUsageInfoForLastCommand() + LS
                 + getUsageInfoForHelpCommand();
     }
 
@@ -1135,6 +1150,12 @@ public class AddressBook {
     private static String getUsageInfoForHelpCommand() {
         return String.format(MESSAGE_COMMAND_HELP, COMMAND_HELP_WORD, COMMAND_HELP_DESC)
                 + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_HELP_EXAMPLE);
+    }
+
+    /** Returns string for showing 'last' command usage instruction */
+    private static String getUsageInfoForLastCommand() {
+        return String.format(MESSAGE_COMMAND_HELP, COMMAND_LAST_WORD, COMMAND_LAST_DESC)
+                + String.format(MESSAGE_COMMAND_LAST_EXAMPLE, COMMAND_LAST_EXAMPLE);
     }
 
     /** Returns the string for showing 'exit' command usage instruction */
